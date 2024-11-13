@@ -1,0 +1,256 @@
+/* NotaParana.css */
+
+/* Reseta estilos padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Container principal */
+  .nota-parana-container {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Cabeçalho */
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+    color: #0056b3;
+    margin-bottom: 10px;
+  }
+  
+  .header p {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  /* Cartão de informações */
+  .info-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .info-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .info-card p {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  /* Seção de doação */
+  .donation-section {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .donate-button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .donate-button:hover {
+    background-color: #004494;
+  }
+  
+  .donation-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .donation-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .donation-option:hover {
+    transform: scale(1.05);
+  }
+  
+  .donation-option h3 {
+    font-size: 1.2rem;
+    color: #0056b3;
+  }
+  
+  .donation-option svg {
+    color: #0056b3;
+  }
+  
+  /* Passo a Passo */
+  .steps-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .steps-section h2 {
+    font-size: 1.8rem;
+    color: #0056b3;
+    margin-bottom: 15px;
+  }
+  
+  .steps-section ul {
+    list-style-type: decimal;
+    padding-left: 20px;
+  }
+  
+  .steps-section li {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  /* Seção de formulário */
+  .form-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+  }
+  
+  .add-box-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+  }
+  
+  .add-box-button:hover {
+    background-color: #218838;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-container label {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .form-container input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .store-details {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .add-loja-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  .add-loja-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .submit-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+  }
+  
+  .submit-button:hover {
+    background-color: #218838;
+  }
+  
+  /* Seção de impacto */
+  .impact-section {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .impact-section h2 {
+    font-size: 1.8rem;
+    color: #0056b3;
+    margin-bottom: 10px;
+  }
+  
+  .impact-section p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .donation-options {
+      flex-direction: column;
+    }
+  
+    .donation-option {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .donate-button {
+      padding: 12px 25px;
+      font-size: 1.1rem;
+    }
+  
+    .steps-section ul {
+      padding-left: 10px;
+    }
+  
+    .form-container input {
+      padding: 8px;
+    }
+  
+    .add-box-button, .submit-button {
+      width: 100%;
+    }
+  }
+  
