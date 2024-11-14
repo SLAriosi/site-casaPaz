@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import aboutImage from "../../../public/bannerhome.jpg";
 import construcao from "../../../public/construcao.jpg";
@@ -5,8 +6,11 @@ import { FaHandHoldingHeart } from "react-icons/fa";
 import styles from "./styles.module.css";
 import { Button, Card } from "@chakra-ui/react";
 import { RiArrowRightLine } from "react-icons/ri";
+import { useRouter } from "next/navigation";
 
 export const SectionAbout = () => {
+    const router = useRouter();
+
     return (
         <>
             <section style={{ marginTop: "30px" }} className="flex justify-center">
@@ -69,6 +73,7 @@ export const SectionAbout = () => {
                                 size="xl"
                                 color="white"
                                 className="mt-4 flex items-center justify-center space-x-2"
+                                onClick={() => router.push("/sobre")}
                             >
                                 <span className="font-bold">Saiba mais</span> <RiArrowRightLine />
                             </Button>
@@ -93,6 +98,7 @@ export const SectionAbout = () => {
                                 size="lg"
                                 color="white"
                                 className="mt-6 flex items-center justify-center space-x-2 self-end"
+                                onClick={() => router.push("/doacoes")}
                             >
                                 <span className="font-bold">APOIE AGORA!</span> <FaHandHoldingHeart />
                             </Button>

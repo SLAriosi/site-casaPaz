@@ -60,7 +60,7 @@ export const Header = () => {
                                                 <Text cursor={"pointer"} fontSize="md" fontWeight="bold" color="#a2bd30">Atuação</Text>
                                             </Box>
                                             <Box p={2} bg="#a3bd3051" borderRadius="md" mb={2}>
-                                                <Text cursor={"pointer"} fontSize="md" fontWeight="bold" color="#a2bd30">Galeria</Text>
+                                                <Text cursor={"pointer"} fontSize="md" fontWeight="bold" color="#a2bd30" onClick={() => { router.push("/galeria") }}>Galeria</Text>
                                             </Box>
                                         </Box>
                                     )}
@@ -139,7 +139,7 @@ export const Header = () => {
 
                 {/* Menu Mobile */}
                 {isMenuOpen && (
-                    <div style={{backgroundColor: "#4970b1"}} className="md:hidden text-white p-4 z-50 absolute w-screen">
+                    <div style={{ backgroundColor: "#4970b1" }} className="md:hidden text-white p-4 z-50 absolute w-screen">
                         <ul className="flex flex-col gap-4">
                             <li className="cursor-pointer" onClick={() => { router.push("/"); setIsMenuOpen(false); }}>Inicio</li>
                             <li
@@ -168,7 +168,7 @@ export const Header = () => {
                                             <Text cursor={"pointer"} fontSize="md" fontWeight="bold" color="#a2bd30">Atuação</Text>
                                         </Box>
                                         <Box p={2} bg="#a3bd3051" borderRadius="md" mb={2}>
-                                            <Text cursor={"pointer"} fontSize="md" fontWeight="bold" color="#a2bd30">Galeria</Text>
+                                            <Text cursor={"pointer"} fontSize="md" fontWeight="bold" color="#a2bd30" onClick={() => { router.push("/galeria") }}>Galeria</Text>
                                         </Box>
                                     </Box>
                                 )}
