@@ -1,10 +1,35 @@
+"use client"
+import { useEffect, useState } from 'react';
 import { Card } from "@chakra-ui/react";
+import Image from "next/image";
+import axios from 'axios';
 import card1 from "../../../public/banner/DSC_0416.jpg";
 import card2 from "../../../public/banner/DSC_0605.jpg";
 import card3 from "../../../public/banner/DSC_0693.jpg";
-import Image from "next/image";
 
 export const SectionAction = () => {
+
+    const [cards, setCards] = useState([]);
+    useEffect(() => {
+        const fetchCards = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/inicio-cards-informacionais`);
+                
+                const data = response.data;
+                setCards(data);
+
+                console.log('data');
+                console.log(data);
+                console.log('data');
+
+            } catch (error) {
+                console.error('Error fetching cards:', error);
+            }
+        };
+
+        fetchCards();
+    }, []);
+
     return (
         <>
             <section style={{
