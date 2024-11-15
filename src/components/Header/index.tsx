@@ -57,7 +57,9 @@ export const Header = () => {
                                             onMouseLeave={closeMenu}
                                         >
                                             <Box p={2} bg="#a3bd3051" borderRadius="md" mb={2}>
-                                                <Text cursor={"pointer"} fontSize="md" fontWeight="bold" color="#a2bd30">Atuação</Text>
+                                                <Text cursor={"pointer"} fontSize="md" fontWeight="bold" color="#a2bd30" onClick={() => {
+                                                    router.push("/atuacao");
+                                                }}>Atuação</Text>
                                             </Box>
                                             <Box p={2} bg="#a3bd3051" borderRadius="md" mb={2}>
                                                 <Text cursor={"pointer"} fontSize="md" fontWeight="bold" color="#a2bd30" onClick={() => { router.push("/galeria") }}>Galeria</Text>
