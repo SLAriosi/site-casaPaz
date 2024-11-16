@@ -141,14 +141,6 @@ export default function Galeria() {
             </Flex>
          </Container>
 
-         <Flex justify="center" mt={4}>
-            <Button mx={1} colorScheme="gray">1</Button>
-            <Button mx={1} colorScheme="gray">2</Button>
-            <Button mx={1} colorScheme="gray">3</Button>
-            <Button mx={1} colorScheme="gray">4</Button>
-            <Button mx={1} colorScheme="gray">5</Button>
-         </Flex>
-
          {isModalOpen && (
             <div style={{
                position: 'fixed',
