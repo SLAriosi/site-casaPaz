@@ -1,13 +1,10 @@
 'use client'
 
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, IconButton, useBreakpointValue } from '@chakra-ui/react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import Slider from 'react-slick';
 import axios from 'axios';
-import slide1 from "../../../public/banner/DSC_0466.jpg";
-import slide2 from "../../../public/banner/DSC_0466.jpg";
-import slide3 from "../../../public/banner/DSC_0466.jpg";
 import Image from 'next/image';
 
 const settings = {
@@ -32,7 +29,7 @@ const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
 export default function Carrosel() {
     const [slider, setSlider] = React.useState<Slider | null>(null)
     const [carrosselImage, setCarrosselImage] = useState<Carrossel[]>([]);
-    
+
     useEffect(() => {
         const fetchCards = async () => {
             try {
@@ -53,7 +50,7 @@ export default function Carrosel() {
     const side = useBreakpointValue({ base: '30%', md: '10px' })
 
     return (
-        <Box position={'relative'} width={'full'} height={"50vh"} md={{height: "80vh"}} overflow={'hidden'}>
+        <Box position={'relative'} width={'full'} height={"50vh"} md={{ height: "80vh" }} overflow={'hidden'}>
             <link
                 rel="stylesheet"
                 type="text/css"
@@ -104,12 +101,13 @@ export default function Carrosel() {
                         background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(194, 223, 85, 0.6) 100%)',
                         zIndex: 1,
                     }}>
-                        <Image 
-                            className="rounded-lg" 
-                            src={`${IMAGE_URL}/${image.imagem}` || '/path/to/default/image.jpg'} 
-                            width={1920} 
-                            height={1080} 
-                            alt={`slide${index + 1}`} 
+                        <Image
+                            className="rounded-lg"
+                            src={`${IMAGE_URL}${image.imagem}` || '/path/to/default/image.jpg'}
+                            priority
+                            width={1920}
+                            height={1080}
+                            alt={`slide${index + 1}`}
                         />
                     </Box>
                 ))}

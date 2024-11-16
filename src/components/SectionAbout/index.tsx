@@ -98,7 +98,7 @@ export const SectionAbout = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                     <div className="flex justify-center lg:justify-end">
                         {imagemQuemSomosUrl && (
-                            <Image className="rounded-lg" src={imagemQuemSomosUrl} alt="aboutImage" width={500} height={300} />
+                            <Image className="rounded-lg" src={imagemQuemSomosUrl} alt="aboutImage" width={500} height={300} priority />
                         )}
                     </div>
                     <div className="flex justify-center lg:justify-start">
@@ -147,7 +147,7 @@ export const SectionAbout = () => {
                         </div>
                         <div>
                             {imagemDiferencaUrl && (
-                                <Image className="rounded-lg" src={imagemDiferencaUrl} alt="aboutImage" width={500} height={300} />
+                                <Image className="rounded-lg" src={imagemDiferencaUrl} alt="aboutImage" width={500} height={300} priority />
                             )}
                         </div>
                     </div>
