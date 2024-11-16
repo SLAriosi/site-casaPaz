@@ -8,12 +8,9 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 const VoluntariadoPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const images = [
-    '/banner/DSC_0416.jpg',
     '/banner/DSC_0466.jpg',
-    '/banner/DSC_0605.jpg',
     '/banner/DSC_0612.jpg',
     '/banner/DSC_0665.jpg',
-    '/banner/DSC_0693.jpg',
   ];
 
   const top = useBreakpointValue({ base: '90%', md: '50%' })
