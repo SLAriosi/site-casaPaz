@@ -1,9 +1,17 @@
 "use client";
 
-import { Box, SimpleGrid, Heading, Spinner } from "@chakra-ui/react";
+import { Box, SimpleGrid, Spinner } from "@chakra-ui/react";
 import TeamCard from "../TeamCard/index";
-import { TeamMember } from "../../types/team";
 import { useState, useEffect } from "react";
+
+interface TeamMember {
+    nome: string;
+    cargo: string;
+    foto: string;
+}
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
 
 export default function TeamSection() {
     const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
@@ -11,7 +19,7 @@ export default function TeamSection() {
 
     const fetchTeamMembers = async () => {
         try {
-            const response = await fetch("http://localhost:3000/api/team");
+            const response = await fetch(`${API_URL}/colaboradores`);
             const data: TeamMember[] = await response.json();
             setTeamMembers(data);
             setLoading(false);
@@ -43,9 +51,9 @@ export default function TeamSection() {
                     {teamMembers.map((member, index) => (
                         <TeamCard
                             key={index}
-                            photo={member.photo}
-                            name={member.name}
-                            role={member.role}
+                            foto={`${IMAGE_URL}${member.foto}`}
+                            nome={member.nome}
+                            cargo={member.cargo}
                         />
                     ))}
                 </SimpleGrid>
