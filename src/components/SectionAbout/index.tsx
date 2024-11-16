@@ -1,37 +1,77 @@
 "use client";
 import Image from "next/image";
-import aboutImage from "../../../public/bannerhome.jpg";
-import construcao from "../../../public/construcao.jpg";
+import { useEffect, useState } from 'react';
+import axios from "axios";
 import { FaHandHoldingHeart } from "react-icons/fa";
 import styles from "./styles.module.css";
 import { Button, Card } from "@chakra-ui/react";
 import { RiArrowRightLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 
+interface CardData {
+    quantidade: string;
+    subtitulo: string;
+    borderColor: string;
+}
+
+interface FazerDiferencaQuemSomos {
+    imagem: string;
+}
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
+
 export const SectionAbout = () => {
     const router = useRouter();
+
+    const [cards, setCards] = useState<CardData[]>([]);
+    const [imagemDiferenca, setImagemDiferenca] = useState<FazerDiferencaQuemSomos[]>([]);
+    const [imagemQuemSomos, setimagemQuemSomos] = useState<FazerDiferencaQuemSomos[]>([]);
+
+    useEffect(() => {
+        const fetchCards = async () => {
+            try {
+                const response = await axios.get(`${API_URL}/inicio-cards-informacionais`);
+                const data = response.data;
+                setCards(data);
+            } catch (error) {
+                console.error('Error fetching cards:', error);
+            }
+        };
+
+        const fetchImagemDiferenca = async () => {
+            try {
+                const response = await axios.get(`${API_URL}/inicio-fazer-diferenca`);
+                const data = response.data;
+                setImagemDiferenca(data);
+            } catch (error) {
+                console.error('Error fetching imagemDiferenca:', error);
+            }
+        };
+
+        const fetchImagemQuemSomos = async () => {
+            try {
+                const response = await axios.get(`${API_URL}/inicio-quem-somos`);
+                const data = response.data;
+                setimagemQuemSomos(data);
+            } catch (error) {
+                console.error('Error fetching imagemDiferenca:', error);
+            }
+        };
+
+        fetchCards();
+        fetchImagemDiferenca();
+        fetchImagemQuemSomos();
+    }, []);
+
+    const imagemDiferencaUrl = imagemDiferenca[0]?.imagem ? `${IMAGE_URL}${imagemDiferenca[0].imagem}` : '';
+    const imagemQuemSomosUrl = imagemQuemSomos[0]?.imagem ? `${IMAGE_URL}${imagemQuemSomos[0].imagem}` : '';
 
     return (
         <>
             <section style={{ marginTop: "30px" }} className="flex justify-center">
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-5">
-                    {[{
-                        count: "50",
-                        text: "crianças e adolescentes atendidos diariamente",
-                        borderColor: "#a2bd30"
-                    }, {
-                        count: "46",
-                        text: "famílias atendidas em 2024",
-                        borderColor: "#4970b1"
-                    }, {
-                        count: "+800",
-                        text: "crianças atendidas desde 2004",
-                        borderColor: "#a2bd30"
-                    }, {
-                        count: "+40.000",
-                        text: "refeições servidas ao ano",
-                        borderColor: "#4970b1"
-                    }].map((card, index) => (
+                    {cards.map((card, index) => (
                         <div key={index} className={`${styles.slideTop} flex justify-center`}>
                             <Card.Root
                                 width="full"
@@ -43,9 +83,9 @@ export const SectionAbout = () => {
                                 borderColor={card.borderColor}
                             >
                                 <Card.Body gap="2" justifyContent="center">
-                                    <Card.Title textAlign="center" fontWeight="extrabold" fontSize="3xl" md={{ fontSize: "5xl" }} mt="2" mb="10" color="#a2bd30">{card.count}</Card.Title>
+                                    <Card.Title textAlign="center" fontWeight="extrabold" fontSize="3xl" md={{ fontSize: "5xl" }} mt="2" mb="10" color="#a2bd30">{card.quantidade}</Card.Title>
                                     <Card.Description textAlign="center" fontSize="md" md={{ fontSize: "lg" }} fontWeight="bold" color="black" lineHeight="23px">
-                                        {card.text}
+                                        {card.subtitulo}
                                     </Card.Description>
                                 </Card.Body>
                             </Card.Root>
@@ -57,7 +97,9 @@ export const SectionAbout = () => {
             <section className="flex justify-center pt-5 pb-5 md:pt-16 md:pb-14 m-5">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                     <div className="flex justify-center lg:justify-end">
-                        <Image className="rounded-lg" src={aboutImage} alt="aboutImage" width={500} height={300} />
+                        {imagemQuemSomosUrl && (
+                            <Image className="rounded-lg" src={imagemQuemSomosUrl} alt="aboutImage" width={500} height={300} />
+                        )}
                     </div>
                     <div className="flex justify-center lg:justify-start">
                         <div className="flex flex-col justify-between max-w-lg text-center lg:text-left">
@@ -104,7 +146,9 @@ export const SectionAbout = () => {
                             </Button>
                         </div>
                         <div>
-                            <Image className="rounded-lg" src={construcao} alt="aboutImage" width={500} height={300} />
+                            {imagemDiferencaUrl && (
+                                <Image className="rounded-lg" src={imagemDiferencaUrl} alt="aboutImage" width={500} height={300} />
+                            )}
                         </div>
                     </div>
                 </div>
