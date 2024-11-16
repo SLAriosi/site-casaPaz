@@ -1,10 +1,37 @@
+"use client"
+import { useEffect, useState } from 'react';
 import { Card } from "@chakra-ui/react";
-import card1 from "../../../public/banner/DSC_0416.jpg";
-import card2 from "../../../public/banner/DSC_0605.jpg";
-import card3 from "../../../public/banner/DSC_0693.jpg";
 import Image from "next/image";
+import axios from 'axios';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
+
+interface CardData {
+    nome: string;
+    imagem: string;
+    descricao: string;
+}
 
 export const SectionAction = () => {
+
+    const [cards, setCards] = useState<CardData[]>([]);
+    useEffect(() => {
+        const fetchCards = async () => {
+            try {
+                const response = await axios.get(`${API_URL}/inicio-areas-atuacao`);
+
+                const data = response.data;
+                setCards(data);
+
+            } catch (error) {
+                console.error('Error fetching cards:', error);
+            }
+        };
+
+        fetchCards();
+    }, []);
+
     return (
         <>
             <section style={{
@@ -35,54 +62,26 @@ export const SectionAction = () => {
                     </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 pt-7 gap-5">
-                    <div>
-                        <Card.Root maxW="350px" overflow="hidden" className="mx-auto">
-                            <Image
-                                src={card1}
-                                alt="PDI"
-                                className="w-full h-auto"
-                            />
-                            <Card.Body gap="2" textAlign="center">
-                                <Card.Title fontSize="xl" fontWeight="extrabold" color="#4970b1">PDI</Card.Title>
-                                <Card.Description fontWeight="bold">
-                                    Programa de Desenvolvimento Infanto-juvenil
-                                </Card.Description>
-                            </Card.Body>
-                            <Card.Footer gap="2" />
-                        </Card.Root>
-                    </div>
-                    <div>
-                        <Card.Root maxW="350px" overflow="hidden" className="mx-auto">
-                            <Image
-                                src={card2}
-                                alt="PFI"
-                                className="w-full h-auto"
-                            />
-                            <Card.Body gap="2" textAlign="center">
-                                <Card.Title fontSize="xl" fontWeight="extrabold" color="#4970b1">PFI</Card.Title>
-                                <Card.Description fontWeight="bold">
-                                    Programa de Integração Familiar e Comunitária
-                                </Card.Description>
-                            </Card.Body>
-                            <Card.Footer gap="2" />
-                        </Card.Root>
-                    </div>
-                    <div>
-                        <Card.Root maxW="350px" overflow="hidden" className="mx-auto">
-                            <Image
-                                src={card3}
-                                alt="PDC"
-                                className="w-full h-auto"
-                            />
-                            <Card.Body gap="2" textAlign="center">
-                                <Card.Title fontSize="xl" fontWeight="extrabold" color="#4970b1">PDC</Card.Title>
-                                <Card.Description fontWeight="bold">
-                                    Programa de Desenvolvimento do Colaborador
-                                </Card.Description>
-                            </Card.Body>
-                            <Card.Footer gap="2" />
-                        </Card.Root>
-                    </div>
+                    {cards.map((card, index) => (
+                        <div key={index}>
+                            <Card.Root maxW="350px" overflow="hidden" className="mx-auto">
+                                <Image
+                                    src={`${IMAGE_URL}${card.imagem}`}
+                                    alt={card.nome}
+                                    className="w-full h-auto"
+                                    width={350}
+                                    height={200}
+                                />
+                                <Card.Body gap="2" textAlign="center">
+                                    <Card.Title fontSize="xl" fontWeight="extrabold" color="#4970b1">{card.nome}</Card.Title>
+                                    <Card.Description fontWeight="bold">
+                                        {card.descricao}
+                                    </Card.Description>
+                                </Card.Body>
+                                <Card.Footer gap="2" />
+                            </Card.Root>
+                        </div>
+                    ))}
                 </div>
             </section>
         </>

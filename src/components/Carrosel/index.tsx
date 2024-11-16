@@ -1,12 +1,13 @@
 'use client'
 
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Box, IconButton, useBreakpointValue } from '@chakra-ui/react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import Slider from 'react-slick';
-import slide1 from "../../../public/banner/DSC_0416.jpg";
-import slide2 from "../../../public/banner/DSC_0605.jpg";
-import slide3 from "../../../public/banner/DSC_0693.jpg";
+import axios from 'axios';
+import slide1 from "../../../public/banner/DSC_0466.jpg";
+import slide2 from "../../../public/banner/DSC_0466.jpg";
+import slide3 from "../../../public/banner/DSC_0466.jpg";
 import Image from 'next/image';
 
 const settings = {
@@ -21,8 +22,32 @@ const settings = {
     slidesToScroll: 1,
 }
 
+interface Carrossel {
+    imagem: string;
+}
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
+
 export default function Carrosel() {
     const [slider, setSlider] = React.useState<Slider | null>(null)
+    const [carrosselImage, setCarrosselImage] = useState<Carrossel[]>([]);
+    
+    useEffect(() => {
+        const fetchCards = async () => {
+            try {
+                const response = await axios.get(`${API_URL}/inicio-carrossel-images`);
+
+                const data = response.data;
+                setCarrosselImage(data);
+
+            } catch (error) {
+                console.error('Error fetching cards:', error);
+            }
+        };
+
+        fetchCards();
+    }, []);
 
     const top = useBreakpointValue({ base: '90%', md: '50%' })
     const side = useBreakpointValue({ base: '30%', md: '10px' })
@@ -68,67 +93,27 @@ export default function Carrosel() {
                 <BiRightArrowAlt color='#fff' />
             </IconButton>
             <Slider {...settings} ref={(slider) => setSlider(slider)}>
-                {/* {cards.map((url, index) => (
-                    <Box
-                        key={index}
-                        height={'xl'}
-                        position="relative"
-                        backgroundPosition="center"
-                        backgroundRepeat="no-repeat"
-                        backgroundSize="cover"
-                        backgroundImage={`url(${url})`}
-                        _before={{
-                            content: '""',
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(194, 223, 85, 0.6) 100%)',
-                            zIndex: 1,
-                        }}
-                    >
-
+                {carrosselImage.map((image, index) => (
+                    <Box key={index} _before={{
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(194, 223, 85, 0.6) 100%)',
+                        zIndex: 1,
+                    }}>
+                        <Image 
+                            className="rounded-lg" 
+                            src={`${IMAGE_URL}/${image.imagem}` || '/path/to/default/image.jpg'} 
+                            width={1920} 
+                            height={1080} 
+                            alt={`slide${index + 1}`} 
+                        />
                     </Box>
-                ))
-                } */}
-                <Box _before={{
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(194, 223, 85, 0.6) 100%)',
-                    zIndex: 1,
-                }}>
-                    <Image src={slide1} width={1920} height={1080} alt='slide1' />
-                </Box>
-                <Box _before={{
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(194, 223, 85, 0.6) 100%)',
-                    zIndex: 1,
-                }}>
-                    <Image src={slide2} width={1920} height={1080} alt='slide1' />
-                </Box>
-                <Box _before={{
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(194, 223, 85, 0.6) 100%)',
-                    zIndex: 1,
-                }}>
-                    <Image src={slide3} width={1920} height={1080} alt='slide1' />
-                </Box>
-            </Slider >
+                ))}
+            </Slider>
         </Box >
     )
 }
