@@ -22,7 +22,7 @@ const CasaDaPazParceiro = () => {
     ? `Gostaria de indicar um parceiro para a Casa da Paz. O nome do indicado é ${partnerName}.` 
     : 'Gostaria de indicar um parceiro para a Casa da Paz. O nome do indicado é [Nome do Parceiro].';
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPartnerName(e.target.value); // Atualiza o nome do parceiro no estado
   };
 
@@ -41,13 +41,16 @@ const CasaDaPazParceiro = () => {
             <img src="/images/ALFALOGO.png" alt="ALFA" className={styles.partnerLogo} />
           </div>
           <div className={styles.logoWrapper}>
-            <img src="/images/ALFALOGO.png" alt="ALFA" className={styles.partnerLogo} />
+            <img src="/images/AMAZON.jpg" alt="Amazon" className={styles.partnerLogo} />
           </div>
           <div className={styles.logoWrapper}>
-            <img src="/images/ALFALOGO.png" alt="ALFA" className={styles.partnerLogo} />
+            <img src="/images/MICROSOFT.jpg" alt="Microsoft" className={styles.partnerLogo} />
           </div>
           <div className={styles.logoWrapper}>
-            <img src="/images/ALFALOGO.png" alt="ALFA" className={styles.partnerLogo} />
+            <img src="/images/APPLE.jpg" alt="Apple" className={styles.partnerLogo} />
+          </div>
+          <div className={styles.logoWrapper}>
+            <img src="/images/WALMART.JPG" alt="Walmart" className={styles.partnerLogo} />
           </div>
         </div>
       </section>

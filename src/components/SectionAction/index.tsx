@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Card } from "@chakra-ui/react";
 import Image from "next/image";
 import axios from 'axios';
+import styles from './styles.module.css';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
@@ -34,20 +35,7 @@ export const SectionAction = () => {
 
     return (
         <>
-            <section style={{
-                backgroundColor: '#a2bd30',
-                opacity: 1,
-                backgroundImage: `
-                  radial-gradient(circle at center center, #ffffff, #a2bd30),
-                  repeating-radial-gradient(
-                    circle at center center,
-                    #ffffff,
-                    #ffffff 40px,
-                    transparent 80px,
-                    transparent 40px
-                  )`,
-                backgroundBlendMode: 'multiply',
-            }} className="p-10 sm:p-16 md:p-20 flex flex-col justify-between items-center w-full text-white">
+            <section className={`${styles.section} p-10 sm:p-16 md:p-20 flex flex-col justify-between items-center w-full text-white`}>
                 <div>
                     <div className="text-center">
                         <h1 className="text-4xl sm:text-4xl md:text-5xl font-extrabold pb-3" style={{ color: "#fff" }}>

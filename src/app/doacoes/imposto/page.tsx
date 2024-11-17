@@ -4,9 +4,11 @@ import { useState } from 'react';
 import styles from './imposto.module.css';
 
 const ImpostoPage = () => {
-  const [isPessoaFisica, setIsPessoaFisica] = useState<boolean>(true); // Controle do botão selecionado
+  const [isPessoaFisica, setIsPessoaFisica] = useState<boolean>(false); // Controle de visibilidade
+  const [isPessoaJuridica, setIsPessoaJuridica] = useState<boolean>(false); // Controle de visibilidade
   const [impostoDevido, setImpostoDevido] = useState<number>(0); // Estado para o valor do imposto devido
   const [valorDoacao, setValorDoacao] = useState<number>(0); // Valor de doação calculado
+  const [nome, setNome] = useState<string>(''); // Estado para armazenar o nome do usuário
 
   // Cálculo do valor de doação
   const calcularDoacao = (imposto: number) => {
@@ -20,14 +22,14 @@ const ImpostoPage = () => {
       { step: 2, description: 'Escolha a entidade “Casa da Paz” e o projeto “Sonhe com uma Criança”.' },
       { step: 3, description: 'Insira o valor correspondente a 6% do seu imposto devido.' },
       { step: 4, description: 'Complete os dados solicitados e emita o boleto de contribuição.' },
-      { step: 5, description: 'Envia o boleto pago para casadapazassociacao@gmail.com.' },
+      { step: 5, description: 'Envie o boleto pago para casadapazassociacao@gmail.com.' },
     ],
     pessoaJuridica: [
       { step: 1, description: 'Acesse o site “Criança quer Futuro”.' },
       { step: 2, description: 'Escolha a entidade “Casa da Paz” e o projeto “Sonhe com uma Criança”.' },
       { step: 3, description: 'Insira o valor correspondente a 1% do seu imposto devido.' },
       { step: 4, description: 'Complete os dados e emita o boleto.' },
-      { step: 5, description: 'Envia o boleto pago para casadapazassociacao@gmail.com.' },
+      { step: 5, description: 'Envie o boleto pago para casadapazassociacao@gmail.com.' },
     ],
   };
 
@@ -46,58 +48,59 @@ const ImpostoPage = () => {
       <div className={styles.buttonContainer}>
         <button
           className={`${styles.button} ${isPessoaFisica ? styles.active : ''}`}
-          onClick={() => { setIsPessoaFisica(true); setValorDoacao(0); }}
+          onClick={() => {
+            setIsPessoaFisica(!isPessoaFisica);
+            setIsPessoaJuridica(false); // Fechar a seção da Pessoa Jurídica quando a Física for aberta
+          }}
         >
           Pessoa Física
         </button>
         <button
-          className={`${styles.button} ${!isPessoaFisica ? styles.active : ''}`}
-          onClick={() => { setIsPessoaFisica(false); setValorDoacao(0); }}
+          className={`${styles.button} ${isPessoaJuridica ? styles.active : ''}`}
+          onClick={() => {
+            setIsPessoaJuridica(!isPessoaJuridica);
+            setIsPessoaFisica(false); // Fechar a seção da Pessoa Física quando a Jurídica for aberta
+          }}
         >
           Pessoa Jurídica
         </button>
       </div>
 
-      {/* Cálculo do Imposto Devido */}
-      <div className={styles.calculator}>
-        <label htmlFor="impostoDevido" className={styles.calculatorLabel}>Informe o valor do Imposto Devido:</label>
-        <input
-          type="number"
-          id="impostoDevido"
-          value={impostoDevido}
-          onChange={(e) => {
-            const valor = parseFloat(e.target.value);
-            setImpostoDevido(valor);
-            calcularDoacao(valor);
-          }}
-          className={styles.calculatorInput}
-          placeholder="R$ 0,00"
-        />
-        {valorDoacao > 0 && (
-          <p className={styles.calculatorResult}>
-            Você pode doar R$ {valorDoacao.toFixed(2)} para o projeto.
-          </p>
-        )}
-        {valorDoacao === 0 && impostoDevido > 0 && (
-          <div className={styles.loadingSpinner}>Calculando...</div>
-        )}
-      </div>
-
       {/* Informações sobre como doar */}
       <div className={styles.content}>
-        <section className={styles.stepsSection}>
-          <h2 className={styles.highlightedTitle}>
-            Como realizar a doação de Imposto de Renda ({isPessoaFisica ? 'Pessoa Física' : 'Pessoa Jurídica'}):
-          </h2>
-          <ul className={styles.steps}>
-            {stepContent[isPessoaFisica ? 'pessoaFisica' : 'pessoaJuridica'].map((step, index) => (
-              <li key={index} className={styles.step}>
-                <span className={styles.stepNumber}>{step.step}</span>
-                <span className={styles.stepDescription}>{step.description}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {/* Dropdown de Pessoa Física */}
+        {isPessoaFisica && (
+          <section className={styles.stepsSection}>
+            <h2 className={styles.highlightedTitle}>
+              Como realizar a doação de Imposto de Renda (Pessoa Física):
+            </h2>
+            <ul className={styles.steps}>
+              {stepContent.pessoaFisica.map((step, index) => (
+                <li key={index} className={styles.step}>
+                  <span className={styles.stepNumber}>{step.step}</span>
+                  <span className={styles.stepDescription}>{step.description}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Dropdown de Pessoa Jurídica */}
+        {isPessoaJuridica && (
+          <section className={styles.stepsSection}>
+            <h2 className={styles.highlightedTitle}>
+              Como realizar a doação de Imposto de Renda (Pessoa Jurídica):
+            </h2>
+            <ul className={styles.steps}>
+              {stepContent.pessoaJuridica.map((step, index) => (
+                <li key={index} className={styles.step}>
+                  <span className={styles.stepNumber}>{step.step}</span>
+                  <span className={styles.stepDescription}>{step.description}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {/* Impacto do Projeto */}
         <section className={styles.impactSection}>

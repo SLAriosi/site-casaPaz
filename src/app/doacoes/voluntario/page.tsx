@@ -2,19 +2,23 @@
 
 import React, { useState, useEffect } from 'react';
 import styles from './Voluntariado.module.css';
-import { Box, IconButton, useBreakpointValue } from '@chakra-ui/react'
-import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
+import { Box, IconButton, useBreakpointValue } from '@chakra-ui/react';
+import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 
 const VoluntariadoPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [role, setRole] = useState('');
+
   const images = [
     '/banner/DSC_0466.jpg',
     '/banner/DSC_0612.jpg',
     '/banner/DSC_0665.jpg',
   ];
 
-  const top = useBreakpointValue({ base: '90%', md: '50%' })
-  const side = useBreakpointValue({ base: '30%', md: '10px' })
+  const top = useBreakpointValue({ base: '90%', md: '50%' });
+  const side = useBreakpointValue({ base: '30%', md: '10px' });
 
   // Função para alterar a imagem do carrossel automaticamente
   useEffect(() => {
@@ -23,6 +27,13 @@ const VoluntariadoPage = () => {
     }, 4000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const message = `Nome Completo: ${name}%0AEmail: ${email}%0ACargo de Voluntário Desejado: ${role}`;
+    const whatsappURL = `https://wa.me/44997492632?text=${message}`;
+    window.open(whatsappURL, '_blank');
+  };
 
   return (
     <div className={styles.container}>
@@ -41,7 +52,7 @@ const VoluntariadoPage = () => {
         />
         <div className={styles.carouselControls}>
           <IconButton
-            className='hidden md:flex'
+            className="hidden md:flex"
             aria-label="left-arrow"
             colorScheme="messenger"
             bg={"#496fb1b5"}
@@ -53,11 +64,12 @@ const VoluntariadoPage = () => {
             zIndex={2}
             onClick={() =>
               setCurrentImage((prevIndex) => (prevIndex - 1 + images.length) % images.length)
-            }>
-            <BiLeftArrowAlt color='#fff' size={20} />
+            }
+          >
+            <BiLeftArrowAlt color="#fff" size={20} />
           </IconButton>
           <IconButton
-            className='hidden md:flex'
+            className="hidden md:flex"
             aria-label="right-arrow"
             colorScheme="messenger"
             borderRadius="full"
@@ -69,8 +81,9 @@ const VoluntariadoPage = () => {
             zIndex={2}
             onClick={() =>
               setCurrentImage((prevIndex) => (prevIndex + 1) % images.length)
-            }>
-            <BiRightArrowAlt color='#fff' />
+            }
+          >
+            <BiRightArrowAlt color="#fff" />
           </IconButton>
         </div>
       </div>
@@ -120,7 +133,6 @@ const VoluntariadoPage = () => {
             </p>
           </li>
         </ul>
-        <button className={styles.joinButton}>Junte-se a nós</button>
       </section>
 
       <section className={styles.formSection}>
@@ -128,7 +140,7 @@ const VoluntariadoPage = () => {
         <p className={styles.formDescription}>
           Complete o formulário abaixo para fazer parte do nosso time de voluntários.
         </p>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <label className={styles.formLabel} htmlFor="name">
             Nome Completo
           </label>
@@ -137,6 +149,8 @@ const VoluntariadoPage = () => {
             type="text"
             id="name"
             placeholder="Seu nome completo"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
 
@@ -148,16 +162,25 @@ const VoluntariadoPage = () => {
             type="email"
             id="email"
             placeholder="Seu e-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
 
           <label className={styles.formLabel} htmlFor="role">
             Cargo de Voluntário Desejado
           </label>
-          <select className={styles.formSelect} id="role" required>
-            <option value="mentor">Mentor de Crianças</option>
-            <option value="event-assistant">Assistente de Eventos</option>
-            <option value="logistics-support">Apoio Logístico</option>
+          <select
+            className={styles.formSelect}
+            id="role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            required
+          >
+            <option value="">Selecione uma opção</option>
+            <option value="Mentor de Crianças">Mentor de Crianças</option>
+            <option value="Assistente de Eventos">Assistente de Eventos</option>
+            <option value="Apoio Logístico">Apoio Logístico</option>
           </select>
 
           <button className={styles.formSubmit} type="submit">

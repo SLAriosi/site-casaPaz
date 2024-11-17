@@ -13,27 +13,18 @@
 }
 
 .title {
-  font-size: 2.8rem;
-  color: rgb(73, 112, 177); /* Cor destacada para o título principal */
-  margin-bottom: 10px;
-  transition: color 0.3s ease-in-out;
+  font-size: 3rem;
+  color: rgb(73, 112, 177);
+  font-weight: 700;
+  margin-bottom: 30px;
+  margin-top: 40px;
 }
-
-.title:hover {
-  color: #92a945; /* Hover mais claro */
-}
-
 .subtitle {
   font-size: 1.2rem;
   color: #6d7b2f; /* Tom mais escuro para contraste */
   line-height: 1.5;
   max-width: 800px;
   margin: 0 auto;
-  transition: color 0.3s ease-in-out;
-}
-
-.subtitle:hover {
-  color: #a2bd30; /* Cor da identidade visual */
 }
 
 /* Botões de seleção */
@@ -116,9 +107,10 @@
 
 .highlightedTitle {
   font-size: 2rem;
-  color: #92a945; /* Hover mais claro */
+  color:#a2bd30; /* Hover mais claro */
   margin-bottom: 20px;
   text-align: center;
+  font-weight: bold;
 }
 
 .steps {
@@ -159,7 +151,7 @@
 }
 
 .step:hover .stepNumber {
-  color: #92a945; /* Hover mais claro */
+  color: #a2bd30; /* Hover mais claro */
   transform: scale(1.2);
 }
 
@@ -173,10 +165,11 @@
 .impactTitle,
 .testimonialsTitle {
   font-size: 2rem;
-  color: #92a945; /* Hover mais claro */
+  color: #a2bd30; /* Hover mais claro */
   text-align: center;
   margin-bottom: 20px;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
 }
 
 .impactText {
@@ -365,4 +358,87 @@
 /* Ícone do WhatsApp */
 .whatsappIcon {
   font-size: 24px; /* Tamanho do ícone */
+}
+/* imposto.module.css */
+
+/* Botão de WhatsApp */
+.whatsappButton {
+  background-color: #25D366; /* Verde do WhatsApp */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.whatsappButton:hover {
+  background-color: #1ebd59; /* Cor mais escura no hover */
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modalTitle {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.modalInput {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.modalButton {
+  background-color: #25D366; /* Verde do WhatsApp */
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.modalButton:hover {
+  background-color: #1ebd59;
+}
+
+.modalCloseButton {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modalCloseButton:hover {
+  background-color: #999;
 }

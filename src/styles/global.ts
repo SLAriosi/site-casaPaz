@@ -32,7 +32,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body, input, textarea, button {
-    font-family: Tahoma, Verdana, sans-serif;
+    font-family: var(--font-main);
     font-weight: 400;
   }
 

@@ -66,10 +66,10 @@ export default function Galeria() {
       <Box bg="gray.50" minH="100vh">
          {/* Cabeçalho */}
          <Box bg="#4970b1" color="white" py={3} textAlign="center">
-            <Heading fontSize="2xl">Eventos</Heading>
+            <Heading fontSize="2xl" style={{ fontFamily: 'Poppins, sans-serif' }}>Eventos</Heading>
             <Flex justify="center" mt={4} gap={4}>
                {eventos.map((evento) => (
-                  <Link key={evento.id} href={`#${evento.nome.toLowerCase().replace(/\s+/g, '')}`} fontWeight="bold">
+                  <Link style={{ fontFamily: 'Poppins, sans-serif' }} key={evento.id} href={`#${evento.nome.toLowerCase().replace(/\s+/g, '')}`} fontWeight="bold">
                      {evento.nome}
                   </Link>
                ))}
@@ -79,10 +79,10 @@ export default function Galeria() {
          <Container maxW="container.xl" py={10}>
             {eventos.map((evento) => (
                <Stack key={evento.id} mb={3} textAlign="center">
-                  <h2 id={evento.nome.toLowerCase().replace(/\s+/g, '')} className="text-2xl sm:text-2xl md:text-3xl font-extrabold pb-3" style={{ color: "#4970b1" }}>
+                  <h2 id={evento.nome.toLowerCase().replace(/\s+/g, '')} className="text-2xl sm:text-2xl md:text-3xl font-extrabold pb-3" style={{ color: "#4970b1", fontFamily: 'Poppins, sans-serif' }}>
                      {evento.nome}
                   </h2>
-                  <Text fontSize="lg" color="gray.600" maxW="800px" mx="auto" textAlign="justify" mb={5}>
+                  <Text fontSize="lg" color="gray.600" maxW="800px" mx="auto" textAlign="justify" mb={5} style={{ fontFamily: 'Poppins, sans-serif' }}>
                      {evento.descricao}
                   </Text>
 
@@ -95,7 +95,7 @@ export default function Galeria() {
                            width="150"
                            height="300"
                            objectFit="cover"
-                           style={{ borderRadius: '8px', cursor: 'pointer', transition: 'filter 0.3s' }}
+                           style={{ borderRadius: '8px', cursor: 'pointer', transition: 'filter 0.3s', fontFamily: 'Poppins, sans-serif' }}
                            onClick={() => handleImageClick(`${IMAGE_URL}/${imagem.url}`)}
                            onMouseOver={(e) => (e.currentTarget.style.filter = 'brightness(0.8)')}
                            onMouseOut={(e) => (e.currentTarget.style.filter = 'brightness(1)')}

@@ -3,6 +3,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px;
+    font-family: var(--font-main);
 }
 
 /* Cabeçalho */
@@ -12,17 +13,16 @@
 }
 
 .title {
-    font-size: 40px;
-    font-weight: bold;
-    color: #0056b3; /* Azul principal */
-    margin-bottom: 15px;
+    font-size: 3rem;
+    color: rgb(73, 112, 177);
+    font-weight: 700;
+    margin-bottom: 30px;
 }
 
 .subtitle {
-    font-size: 18px;
-    color: #666; /* Cor neutra para o subtítulo */
-    margin-bottom: 30px;
-    line-height: 1.6;
+    font-size: 1.6rem;
+    color: #6d7b2f;
+    margin-bottom: 50px;
 }
 
 /* Estilo do Carrossel de Imagens */
@@ -81,19 +81,16 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.impactSection:hover {
-    transform: translateY(-10px);
-}
-
 .impactTitle {
-    font-size: 30px;
-    color: #0056b3; /* Azul principal */
-    margin-bottom: 20px;
+    font-size: 3rem;
+    color: rgb(73, 112, 177);
+    font-weight: 700;
+    margin-bottom: 30px;
 }
 
 .impactText {
     font-size: 16px;
-    color: #555; /* Cor neutra */
+    color: #6d7b2f; 
     line-height: 1.6;
 }
 
@@ -109,13 +106,13 @@
 
 .statNumber {
     font-size: 36px;
-    color: #0056b3; /* Azul principal */
+    color: rgb(73, 112, 177); /* Azul principal */
     font-weight: bold;
 }
 
 .statDescription {
     font-size: 14px;
-    color: #777;
+    color: #6d7b2f;
 }
 
 /* Seção de Cargos de Voluntário */
@@ -129,8 +126,9 @@
 
 .rolesTitle {
     font-size: 30px;
-    color: #0056b3; /* Azul principal */
+    color: rgb(73, 112, 177); /* Azul principal */
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .rolesList {
@@ -144,12 +142,13 @@
 
 .roleTitle {
     font-size: 22px;
-    color: #333;
+    color: #a2bd30;
+    font-weight: bold;
 }
 
 .roleDescription {
     font-size: 16px;
-    color: #666;
+    color: #6d7b2f;
 }
 
 .joinButton {
@@ -178,15 +177,17 @@
 
 .formTitle {
     font-size: 30px;
-    color: #0056b3; /* Azul principal */
+    color: rgb(73, 112, 177); /* Azul principal */
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .formDescription {
     font-size: 16px;
-    color: #555; /* Cor neutra */
+    color: #a2bd30; /* Cor neutra */
     line-height: 1.6;
     margin-bottom: 30px;
+    font-weight: bold;
 }
 
 .form {
@@ -196,7 +197,7 @@
 
 .formLabel {
     font-size: 14px;
-    color: #333;
+    color: rgb(73, 112, 177);
     margin-bottom: 5px;
 }
 
@@ -211,7 +212,7 @@
 
 .formSubmit {
     padding: 10px 30px;
-    background-color: #0056b3; /* Azul principal */
+    background-color:rgb(73, 112, 177); /* Azul principal */
     color: #fff;
     border: none;
     border-radius: 5px;
