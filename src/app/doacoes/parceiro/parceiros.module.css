@@ -164,6 +164,7 @@
     background-color: #7b9132; /* Hover mais claro */
     transform: scale(1.05);
 }
+
 /* Modal */
 .modal {
     position: fixed;
@@ -176,28 +177,37 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-  }
-  
-  .modalContent {
+}
+
+.modalContent {
     background: white;
     padding: 20px;
     border-radius: 8px;
     width: 80%;
     max-width: 500px;
     text-align: center;
-  }
-  
-  .closeModal {
-    background: none;
-    border: none;
-    font-size: 20px;
+    position: relative; /* Adicionado para garantir o posicionamento do ícone de fechar */
+}
+
+/* Estilo para o ícone de fechar */
+.closeModal {
     position: absolute;
     top: 10px;
     right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333; /* Cor visível para o ícone */
     cursor: pointer;
-  }
-  
-  .whatsappButton {
+    z-index: 2000; /* Garantir que o ícone esteja acima de outros elementos */
+}
+
+.closeModal:hover {
+    color: red; /* Cor ao passar o mouse sobre o ícone */
+}
+
+.whatsappButton {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
@@ -205,13 +215,12 @@
     color: white;
     text-decoration: none;
     border-radius: 5px;
-  }
-  
-  .referralInput {
+}
+
+.referralInput {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-  }
-  
+}

@@ -4,12 +4,10 @@ import "./global.css";
 import { FaHeart } from "react-icons/fa6";
 import { Provider } from "@/components/ui/provider"
 import {
-    DrawerActionTrigger,
     DrawerBackdrop,
     DrawerBody,
     DrawerCloseTrigger,
     DrawerContent,
-    DrawerFooter,
     DrawerHeader,
     DrawerRoot,
     DrawerTitle,
